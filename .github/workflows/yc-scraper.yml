@@ -29,3 +29,11 @@ jobs:
         with:
           name: yc-companies-master
           path: yc_companies_master.csv
+
+      - name: Commit updated CSV
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add yc_companies_master.csv
+          git diff --cached --quiet || git commit -m "chore: update yc_companies_master.csv [skip ci]"
+          git push
